@@ -1,189 +1,886 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ritik Chakrawarty - Portfolio</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #121212;
-      color: #eee;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #1f1f1f;
-      padding: 15px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #00d4ff;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: #ddd;
-      font-weight: 500;
-    }
-    section {
-      padding: 80px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      color: #00d4ff;
-    }
-    .experience-card, .contact-card {
-      background: #1e1e1e;
-      padding: 25px;
-      border-radius: 10px;
-      margin-bottom: 30px;
-      border-left: 5px solid #00d4ff;
-    }
-    .role {
-      color: #ff00ff;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    .contact-grid {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .contact-card {
-      flex: 1 1 45%;
-      text-align: center;
-    }
-    .btn {
-      margin-top: 10px;
-      display: inline-block;
-      background: #00d4ff;
-      color: #000;
-      padding: 10px 20px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .leetcode-section {
-      text-align: center;
-      padding-top: 40px;
-    }
-    .leetcode-section img {
-      height: 60px;
-      filter: brightness(85%);
-    }
-    .leetcode-section p {
-      margin-top: 10px;
-      color: #ccc;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritik Chakrawarty - Senior Backend Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(120, 198, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            33% { transform: translateX(-20px) translateY(-10px); }
+            66% { transform: translateX(20px) translateY(10px); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 0, 255, 0.8); }
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .intro-text {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            padding-left: 10px;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-category-title {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .skill-item {
+            position: relative;
+        }
+
+        .skill-name {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #ff00ff);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 2s ease-in-out;
+            position: relative;
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Certifications Section */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .certification-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certification-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .certification-card:hover::before {
+            left: 100%;
+        }
+
+        .certification-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .cert-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .certification-card h3 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .certification-card p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .cert-issuer {
+            color: #ff00ff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .project-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .project-btn:hover .btn-icon {
+            transform: translateX(5px);
+        }
+
+        /* Experience Section */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 80px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .experience-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .experience-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .experience-card:hover::before {
+            left: 100%;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .company-name {
+            font-size: 1.8rem;
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+
+        .role {
+            font-size: 1.3rem;
+            color: #ff00ff;
+            margin-bottom: 20px;
+        }
+
+        .achievements {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .achievements li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .achievements li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 60%; right: 15%; animation-delay: 2s; }
+        .floating-element:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
+
+        /* Thank You Message */
+        .thank-you {
+            text-align: center;
+            padding: 50px 0;
+            background: rgba(255, 255, 255, 0.02);
+            margin-top: 50px;
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .code-comment { color: #6a994e; }
+        .code-function { color: #f77f00; }
+        .code-string { color: #fcbf49; }
+        .code-keyword { color: #003049; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { font-size: 1.2rem; }
+            .section-title { font-size: 2rem; }
+            .nav-links { display: none; }
+            .tech-stack { flex-direction: column; align-items: center; }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <nav>
-      <div class="logo">RC</div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="resume.pdf" download>Download Resume</a></li>
-      </ul>
-    </nav>
-  </header>
+    <div class="bg-animation"></div>
+    
+    <!-- Floating Elements -->
+    <div class="floating-element">{ }</div>
+    <div class="floating-element">[ ]</div>
+    <div class="floating-element">< /></div>
 
-  <!-- Home -->
-  <section id="home">
-    <h1>Ritik Chakrawarty</h1>
-    <p>Senior Backend Developer | Fintech | Distributed Systems</p>
-    <p>Crafting scalable backend systems & APIs with precision and performance.</p>
-  </section>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">RC</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- Experience -->
-  <section id="experience">
-    <h2 class="section-title">Professional Experience</h2>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Ritik Chakrawarty</h1>
+            <p>Senior Backend Developer | Distributed Systems Architect</p>
+            <div class="intro-text">
+                <p>🚀 3+ years of experience building enterprise-grade distributed systems</p>
+                <p>💡 Specialized in fintech solutions processing millions of transactions daily</p>
+                <p>⚡ Expert in microservices architecture, system scalability, and high-performance backend development</p>
+                <p>🎯 Passionate about transforming complex business requirements into elegant, scalable code</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="experience-card">
-      <h3>Capital Now</h3>
-      <p class="role">Senior Software Developer | Dec 2024 – Present</p>
-      <p>
-        Capital Now is a Non-Banking Financial Company (NBFC) providing instant credit products through a proprietary mobile app. Their focus is on automating loan disbursement, repayment, and KYC processes using modern tech stacks.
-      </p>
-    </div>
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Professional Experience</h2>
+            
+            <div class="experience-grid">
+                <div class="experience-card fade-in">
+                    <h3 class="company-name">Capital Now</h3>
+                    <p class="role">Senior Software Developer | Dec 2024 – Present</p>
+                    <p><strong>About:</strong> Capital Now is a leading NBFC (Non-Banking Financial Company) providing innovative lending solutions and automated loan disbursement systems.</p>
+                    <p><strong>Project:</strong> Capital Now App - Backend System</p>
+                    
+                    <ul class="achievements">
+                        <li>Automated CIBIL reporting system, reducing logic duplication by 60% across 5+ vendors</li>
+                        <li>Built PDF parser with 95% accuracy in PAN/UAN extraction using Node.js + Tesseract</li>
+                        <li>Integrated UPI AutoPay, boosting repayment success by 40%</li>
+                        <li>Developed dynamic bank-vendor switch mechanism, reducing downtime by 80%</li>
+                        <li>Refactored eNACH mandates, reducing DB load from 80% to 30% and increasing throughput 2.5x</li>
+                        <li>Mentored 3 junior developers, improving release stability by 35%</li>
+                    </ul>
+                </div>
 
-    <div class="experience-card">
-      <h3>NPCI – National Payments Corporation of India</h3>
-      <p class="role">Senior Application Developer | Jul 2022 – Nov 2024</p>
-      <p>
-        NPCI is the umbrella organization behind UPI, RuPay, and IMPS. I worked on the <strong>Retail Central Bank Digital Currency (R-CBDC)</strong> – a blockchain-based sovereign digital currency initiative led by RBI. This large-scale project required high availability, resilience, and transaction-level traceability.
-      </p>
-    </div>
-  </section>
+                <div class="experience-card fade-in">
+                    <h3 class="company-name">National Payments Corporation of India (NPCI)</h3>
+                    <p class="role">Senior Application Developer - Distributed Systems | Jul 2022 – Nov 2024</p>
+                    <p><strong>About:</strong> NPCI is India's umbrella organization for operating retail payments and settlement systems.</p>
+                    <p><strong>Project:</strong> Retail Central Bank Digital Currency (R-CBDC) - Large-Scale Distributed System</p>
+                    
+                    <ul class="achievements">
+                        <li>Architected distributed transaction reconciliation system processing 500K+ daily transactions with 99% recovery rate</li>
+                        <li>Designed secure onboarding microservice for 15+ organizations, reducing onboarding latency by 60%</li>
+                        <li>Built Kafka-based event streaming architecture scaling data throughput 3x to process 2M+ messages daily</li>
+                        <li>Developed automated reporting microservice eliminating 70% manual effort with 99.9% accuracy</li>
+                        <li>Optimized distributed currency issuance/redemption pipeline with horizontal scaling capabilities</li>
+                        <li>Refactored distributed data architecture achieving 83% DB efficiency improvement and 50% faster query response</li>
+                        <li>Led technical mentoring for 5 engineers and cross-service integration with 3 distributed teams</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Skills -->
-  <section id="skills">
-    <h2 class="section-title">Technical Arsenal</h2>
-    <ul>
-      <li>Node.js, TypeScript, JavaScript, Golang</li>
-      <li>Kafka, Redis, Microservices, Kubernetes</li>
-      <li>AWS, REST APIs, MySQL, Sequelize</li>
-    </ul>
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Technical Arsenal</h2>
+            
+            <div class="skills-container">
+                <div class="skill-category fade-in">
+                    <h3 class="skill-category-title">Programming Languages</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-level="95">
+                            <span class="skill-name">TypeScript</span>
+                            <div class="skill-bar"><div class="skill-progress"></div></div>
+                        </div>
+                        <div class="skill-item" data-level="90">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-bar"><div class="skill-progress"></div></div>
+                        </div>
+                        <div class="skill-item" data-level="85">
+                            <span class="skill-name">Golang</span>
+                            <div class="skill-bar"><div class="skill-progress"></div></div>
+                        </div>
+                        <div class="skill-item" data-level="80">
+                            <span class="skill-name">Java</span>
+                            <div class="skill-bar"><div class="skill-progress"></div></div>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- LeetCode Icon -->
-    <div class="leetcode-section">
-      <a href="https://leetcode.com/u/Ritik_Chakrawarty/" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" alt="LeetCode Profile" />
-      </a>
-      <p>300+ problems solved on LeetCode</p>
-    </div>
-  </section>
+                <div class="skill-category fade-in">
+                    <h3 class="skill-category-title">Distributed Systems</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-level="95">
+                            <span class="skill-name">Microservices</span>
+                            <div class="skill-bar"><div class="skill-progress"></div></div>
+                        </div>
+                        <div class="skill-item" data-level="90">
+                            <span class="skill-name">Kafka</span>
+                            <div class="skill-bar"><div class="skill-progress"></div></div>
+                        </div>
+                        <div class="skill-item" data-level="90">
+                            <span class="skill-name">Redis</span>
+                            <div class="skill-bar"><div class="skill-progress"></div></div>
+                        </div>
+                        <div class="skill-item" data-level="85">
+                            <span class="skill-name">Docker & Kubernetes</span>
+                            <div class="skill-bar"><div class="skill-progress"></div></div>
+                        </div>
+                    </div>
+                </div>
 
-  <!-- Projects -->
-  <section id="projects">
-    <h2 class="section-title">Featured Projects</h2>
-    <ul>
-      <li><strong>Book It!</strong>: Movie ticketing system using Hyperledger with token-based seat tracking</li>
-      <li><strong>Track My Prada</strong>: Supply chain authenticity tracker using blockchain</li>
-      <li><strong>R-CBDC Infra</strong>: India's digital currency infra with distributed microservices</li>
-    </ul>
-  </section>
+                <div class="skill-category fade-in">
+                    <h3 class="skill-category-title">Backend & Cloud</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-level="95">
+                            <span class="skill-name">Node.js</span>
+                            <div class="skill-bar"><div class="skill-progress"></div></div>
+                        </div>
+                        <div class="skill-item" data-level="85">
+                            <span class="skill-name">AWS</span>
+                            <div class="skill-bar"><div class="skill-progress"></div></div>
+                        </div>
+                        <div class="skill-item" data-level="90">
+                            <span class="skill-name">REST APIs</span>
+                            <div class="skill-bar"><div class="skill-progress"></div></div>
+                        </div>
+                        <div class="skill-item" data-level="80">
+                            <span class="skill-name">Hyperledger Fabric</span>
+                            <div class="skill-bar"><div class="skill-progress"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Book It! - Movie Ticketing System</h3>
+                    <p>Built on Hyperledger Fabric with secure seat tokenization, supporting multiple users with blockchain-based ticket verification and anti-fraud mechanisms.</p>
+                </div>
+                
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Track My Prada - Blockchain Traceability</h3>
+                    <p>Blockchain-powered product traceability tool preventing counterfeits by tracking every layer of authentication through the supply chain.</p>
+                </div>
+                
+                <div class="project-card fade-in">
+                    <h3 class="project-title">R-CBDC Infrastructure</h3>
+                    <p>Architected India's Retail Central Bank Digital Currency system processing 500K+ daily transactions with distributed microservices architecture.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2 class="section-title">Let's Connect</h2>
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Let's Connect</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-card fade-in">
+                    <span class="contact-icon">📧</span>
+                    <h3>Email</h3>
+                    <p>Ready to discuss your next big project?</p>
+                    <a href="mailto:rchakrawarty55@gmail.com" class="btn">Send Email</a>
+                </div>
+                
+                <div class="contact-card fade-in">
+                    <span class="contact-icon">💼</span>
+                    <h3>LinkedIn</h3>
+                    <p>Let's connect professionally</p>
+                    <a href="https://www.linkedin.com/in/ritik-chakrawarty" target="_blank" class="btn">View Profile</a>
+                </div>
+                
+                <div class="contact-card fade-in">
+                    <span class="contact-icon">💻</span>
+                    <h3>LeetCode</h3>
+                    <p>300+ problems solved</p>
+                    <a href="https://leetcode.com/u/Ritik_Chakrawarty/" target="_blank" class="btn">View Solutions</a>
+                </div>
+                
+                <div class="contact-card fade-in">
+                    <span class="contact-icon">📄</span>
+                    <h3>Resume</h3>
+                    <p>Download my detailed resume</p>
+                    <a href="#" class="btn" onclick="alert('Resume download would be implemented here')">Download PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="contact-grid">
-      <div class="contact-card">
-        <h3>📧 Email</h3>
-        <p>Reach out to me at:</p>
-        <p style="font-weight:bold; color:#00d4ff;">rchakrawarty55@gmail.com</p>
-        <a href="mailto:rchakrawarty55@gmail.com" class="btn">Send Email</a>
-      </div>
+    <!-- Thank You Section -->
+    <section class="thank-you">
+        <div class="container">
+            <h2 class="section-title">Thank You for Visiting!</h2>
+            <div class="code-block">
+                <div class="code-comment">// Thank you for exploring my portfolio</div>
+                <div><span class="code-keyword">class</span> <span class="code-function">PortfolioVisitor</span> {</div>
+                <div>&nbsp;&nbsp;<span class="code-function">constructor</span>() {</div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;this.impression = <span class="code-string">'amazing'</span>;</div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;this.nextStep = <span class="code-string">'hire_ritik'</span>;</div>
+                <div>&nbsp;&nbsp;}</div>
+                <div></div>
+                <div>&nbsp;&nbsp;<span class="code-function">thankYou</span>() {</div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;return <span class="code-string">'Looking forward to building something incredible together!'</span>;</div>
+                <div>&nbsp;&nbsp;}</div>
+                <div>}</div>
+                <div></div>
+                <div class="code-comment">// Let's code the future, one scalable system at a time 🚀</div>
+            </div>
+        </div>
+    </section>
 
-      <div class="contact-card">
-        <h3>💼 LinkedIn</h3>
-        <p>Let’s connect professionally</p>
-        <a href="https://www.linkedin.com/in/ritik-chakrawarty" target="_blank" class="btn">View Profile</a>
-      </div>
-    </div>
-  </section>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate skill bars when they come into view
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillItem = entry.target;
+                    const progressBar = skillItem.querySelector('.skill-progress');
+                    const level = skillItem.getAttribute('data-level');
+                    
+                    setTimeout(() => {
+                        progressBar.style.width = level + '%';
+                    }, 500);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.skill-item').forEach(item => {
+            skillObserver.observe(item);
+        });
+
+        // Dynamic typing effect for hero section
+        const heroText = document.querySelector('.hero-content p');
+        const texts = [
+            'Building scalable fintech solutions that process millions of transactions daily',
+            'Architecting distributed systems for next-generation financial technology',
+            'Transforming complex business logic into elegant, high-performance code'
+        ];
+        
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                heroText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                heroText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+
+            setTimeout(typeEffect, isDeleting ? 50 : 100);
+        }
+
+        // Start typing effect after a delay
+        setTimeout(typeEffect, 2000);
+
+        // Add random floating particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = '#00d4ff';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.opacity = '0.6';
+            particle.style.zIndex = '-1';
+            
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            
+            document.body.appendChild(particle);
+            
+            const duration = Math.random() * 3000 + 2000;
+            const animation = particle.animate([
+                { transform: 'translateY(0px)', opacity: 0.6 },
+                { transform: `translateY(-${window.innerHeight + 100}px)`, opacity: 0 }
+            ], {
+                duration: duration,
+                easing: 'linear'
+            });
+            
+            animation.onfinish = () => particle.remove();
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 500);
+    </script>
 </body>
 </html>
