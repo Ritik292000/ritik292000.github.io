@@ -751,6 +751,17 @@
         .intro-text p:nth-child(3) { animation-delay: 0.9s; }
         .intro-text p:nth-child(4) { animation-delay: 1.1s; }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @keyframes particle-float {
             0% {
                 transform: translateY(100vh) translateX(0);
