@@ -767,7 +767,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo"><img src="ritik_logo.png" alt="RC" style="height: 50px; vertical-align: middle; margin-right: 8px;"></div>
+            <div class="logo"><img src="ritik_logo.png" alt="RC" style="height: 65px; vertical-align: middle; margin-right: 10px;"></div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -775,7 +775,7 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <a href="RitikChakrawartyResume4.pdf" class="download-btn" onclick="downloadResume()">
+            <a href="#" class="download-btn" onclick="downloadResume()">
                 <i class="fas fa-download"></i> Resume
             </a>
         </div>
@@ -973,6 +973,16 @@
         //     for (let i = 0; i < particleCount; i++) {
         //         const particle = document.createElement('div');
         //         particle.
+
+        function downloadResume(event) {
+            event.preventDefault(); // Prevents jump to top
+            const link = document.createElement('a');
+            link.href = 'RitikChakrawartyResume4.pdf';
+            link.download = 'RitikChakrawartyResume4.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
 
         // Background Canvas Animation (Floating Glows)
         const canvas = document.getElementById('animated-bg');
