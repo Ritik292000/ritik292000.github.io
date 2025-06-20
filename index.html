@@ -31,12 +31,12 @@
             z-index: 1000;
             transition: all 0.3s ease;
         }
-
+        
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -47,6 +47,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: glow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         @keyframes glow {
@@ -141,7 +142,7 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             background: linear-gradient(45deg, #00f5ff, #ff00ff, #00ff00);
             -webkit-background-clip: text;
@@ -150,8 +151,8 @@
         }
 
         .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
             opacity: 0.9;
             animation: slideInUp 1s ease-out 0.3s both;
         }
@@ -169,14 +170,14 @@
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
             color: #00f5ff;
             display: block;
         }
 
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.8;
         }
 
@@ -752,12 +753,13 @@
 </head>
 <body>
     <!-- Particles Background -->
+<!--     <div class="particles" id="particles"></div> -->
     <div class="particles" id="particles"></div>
-
+    <canvas id="animated-bg"></canvas>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">RC</div>
+            <div class="logo">Ritik.dev</div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -955,11 +957,70 @@
     </section>
 
     <script>
-        // Particles Animation
-        function createParticles() {
+        // // Particles Animation
+        // function createParticles() {
+        //     const particlesContainer = document.getElementById('particles');
+        //     const particleCount = 50;
+
+        //     for (let i = 0; i < particleCount; i++) {
+        //         const particle = document.createElement('div');
+        //         particle.
+                function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 50;
-
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
-                particle.
+                particle.classList.add('particle');
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${10 + Math.random() * 10}s`;
+                particle.style.opacity = Math.random();
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Background Canvas Animation (Floating Glows)
+        const canvas = document.getElementById('animated-bg');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const circles = Array.from({ length: 40 }, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 3 + 2,
+            dx: (Math.random() - 0.5) * 0.5,
+            dy: (Math.random() - 0.5) * 0.5,
+            color: Math.random() > 0.5 ? '#00f5ff' : '#ff00ff',
+        }));
+
+        function animateBackground() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (const c of circles) {
+                ctx.beginPath();
+                ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+                ctx.fillStyle = c.color;
+                ctx.shadowColor = c.color;
+                ctx.shadowBlur = 15;
+                ctx.fill();
+                ctx.closePath();
+
+                c.x += c.dx;
+                c.y += c.dy;
+
+                if (c.x < 0 || c.x > canvas.width) c.dx *= -1;
+                if (c.y < 0 || c.y > canvas.height) c.dy *= -1;
+            }
+
+            requestAnimationFrame(animateBackground);
+        }
+
+        animateBackground();
