@@ -754,7 +754,7 @@
           z-index: -1;
           width: 100%;
           height: 100%;
-          background: black;
+          background: #000; /* Black background */
         }
     </style>
 </head>
@@ -774,7 +774,7 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <a href="RitikChakrawartyResume4.pdf" class="download-btn" onclick="downloadResume()">
+            <a href="RitikChakrawartyResume4.pdf" class="download-btn" onclick="downloadResume()">Resume</a>
         </div>
     </nav>
 
@@ -975,24 +975,23 @@
       const canvas = document.getElementById('matrix-canvas');
       const ctx = canvas.getContext('2d');
     
-      canvas.height = window.innerHeight;
       canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     
-      const letters = 'アァイィウヴエェオカガキギクグケゲコゴサザシジスズセソタチヂッツヅテデトドナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-      const fontSize = 14;
-      const columns = canvas.width / fontSize;
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789{}[]();<>=+-*/';
+      const fontSize = 16;
+      const columns = Math.floor(canvas.width / fontSize);
+      const drops = Array(columns).fill(1);
     
-      const drops = Array(Math.floor(columns)).fill(1);
-    
-      function drawMatrix() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-        ctx.fillStyle = '#0F0';
-        ctx.font = `${fontSize}px monospace`;
+        ctx.fillStyle = '#00d9ff'; // Light blue for your theme
+        ctx.font = `${fontSize}px Consolas, monospace`;
     
         for (let i = 0; i < drops.length; i++) {
-          const char = letters[Math.floor(Math.random() * letters.length)];
+          const char = characters[Math.floor(Math.random() * characters.length)];
           ctx.fillText(char, i * fontSize, drops[i] * fontSize);
     
           if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
@@ -1003,7 +1002,7 @@
         }
       }
     
-      setInterval(drawMatrix, 50);
+      setInterval(draw, 40);
     
       window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
