@@ -747,15 +747,14 @@
                 opacity: 0;
             }
         }
-        #animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -2;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            background: transparent;
+        #matrix-canvas {
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: -1;
+          width: 100%;
+          height: 100%;
+          background: black;
         }
     </style>
 </head>
@@ -763,7 +762,7 @@
     <!-- Particles Background -->
 <!--     <div class="particles" id="particles"></div> -->
     <div class="particles" id="particles"></div>
-    <canvas id="animated-bg"></canvas>
+    <canvas id="matrix-canvas"></canvas>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -775,9 +774,7 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <a href="#" class="download-btn" onclick="downloadResume()">
-                <i class="fas fa-download"></i> Resume
-            </a>
+            <a href="RitikChakrawartyResume4.pdf" class="download-btn" onclick="downloadResume()">
         </div>
     </nav>
 
@@ -974,60 +971,44 @@
         //         const particle = document.createElement('div');
         //         particle.
 
-        function downloadResume(event) {
-            event.preventDefault(); // Prevents jump to top
-            const link = document.createElement('a');
-            link.href = 'RitikChakrawartyResume4.pdf';
-            link.download = 'RitikChakrawartyResume4.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+    
+      const canvas = document.getElementById('matrix-canvas');
+      const ctx = canvas.getContext('2d');
+    
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+    
+      const letters = 'アァイィウヴエェオカガキギクグケゲコゴサザシジスズセソタチヂッツヅテデトドナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      const fontSize = 14;
+      const columns = canvas.width / fontSize;
+    
+      const drops = Array(Math.floor(columns)).fill(1);
+    
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+        ctx.fillStyle = '#0F0';
+        ctx.font = `${fontSize}px monospace`;
+    
+        for (let i = 0; i < drops.length; i++) {
+          const char = letters[Math.floor(Math.random() * letters.length)];
+          ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+    
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+    
+          drops[i]++;
         }
-
-        // Background Canvas Animation (Floating Glows)
-        const canvas = document.getElementById('animated-bg');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const circles = Array.from({ length: 40 }, () => ({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            r: Math.random() * 3 + 2,
-            dx: (Math.random() - 0.5) * 0.5,
-            dy: (Math.random() - 0.5) * 0.5,
-            color: Math.random() > 0.5 ? '#00f5ff' : '#ff00ff',
-        }));
-
-        function animateBackground() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            for (const c of circles) {
-                ctx.beginPath();
-                ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
-                ctx.fillStyle = c.color;
-                ctx.shadowColor = c.color;
-                ctx.shadowBlur = 15;
-                ctx.fill();
-                ctx.closePath();
-
-                c.x += c.dx;
-                c.y += c.dy;
-
-                if (c.x < 0 || c.x > canvas.width) c.dx *= -1;
-                if (c.y < 0 || c.y > canvas.height) c.dy *= -1;
-            }
-
-            requestAnimationFrame(animateBackground);
-        }
-
-        animateBackground();
+      }
+    
+      setInterval(drawMatrix, 50);
+    
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
     </script>
 </body>
 </html>
