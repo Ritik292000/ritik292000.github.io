@@ -732,6 +732,13 @@
             animation: particle-float 20s linear infinite;
         }
 
+        .typing-text {
+          display: inline-block;
+          width: 360px; /* Set fixed width based on the longest expected line */
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
         .intro-text {
             text-align: left;
             max-width: 800px;
@@ -817,7 +824,7 @@
             <h1>Ritik Chakrawarty</h1>
             <p>
               Senior Backend Developer
-              <span id="typing-text"> | Distributed Systems</span>
+              <span id="typing-text" class="typing-text"> | Distributed Systems</span>
             </p>
 <!--             <div class="intro-text"> -->
                 <p>💡 Specialized in fintech solutions processing millions of transactions daily</p>
