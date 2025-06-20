@@ -754,7 +754,8 @@
           z-index: -1;
           width: 100%;
           height: 100%;
-          background: #000; /* Black background */
+          background: #000;
+          filter: blur(1px) brightness(0.6); /* Blur + dim */
         }
     </style>
 </head>
@@ -984,10 +985,10 @@
       const drops = Array(columns).fill(1);
     
       function draw() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-        ctx.fillStyle = '#00d9ff'; // Light blue for your theme
+        ctx.fillStyle = 'rgba(0, 217, 255, 0.15)'; // Light blue for your theme
         ctx.font = `${fontSize}px Consolas, monospace`;
     
         for (let i = 0; i < drops.length; i++) {
