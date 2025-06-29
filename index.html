@@ -788,6 +788,44 @@
           background: #000;
           filter: blur(0.5px) brightness(0.7); /* light blur, subtle dim */
         }
+                /* Copyright Section */
+        .copyright-section {
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 1px solid rgba(0, 245, 255, 0.2);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .copyright-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .copyright-text {
+            color: #cccccc;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .copyright-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .copyright-links a {
+            color: #00f5ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .copyright-links a:hover {
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -1049,6 +1087,26 @@
             </p>
         </div>
     </section>
+
+    <footer class="copyright-section">
+        <div class="copyright-content">
+            <p class="copyright-text">
+                © 2025 Ritik Chakrawarty. All rights reserved.
+            </p>
+            <p class="copyright-text">
+                Designed and developed by Ritik Chakrawarty
+            </p>
+            <div class="copyright-links">
+                <a href="mailto:rchakrawarty55@gmail.com">Email</a>
+                <span> | </span>
+                <a href="https://github.com/Ritik292000" target="_blank">GitHub</a>
+                <span> | </span>
+                <a href="https://www.linkedin.com/in/ritik-chakrawarty/" target="_blank">LinkedIn</a>
+                <span> | </span>
+                <a href="https://ritik292000.github.io" target="_blank">Portfolio</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // // Particles Animation
