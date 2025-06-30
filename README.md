@@ -1,3 +1,10 @@
+### Tech Stack
+ 
+<p align="left">
+  <img src="https://skillicons.dev/icons?i=java,js,ts,react,angular,nextjs,nodejs,express,mysql,mongodb,php,html,css,tailwind,go" />
+</p>
+
+
 # Ritik292000.github.io
 My Portfolio Website
 
