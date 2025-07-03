@@ -1214,14 +1214,14 @@
         let isDeleting = false;
         
         function typeEffect() {
-            const Text = document.getElementById('typing-text');
+            const typingText  = document.getElementById('typing-text');
             const currentText = texts[textIndex];
             
             if (isDeleting) {
-                heroText.textContent = currentText.substring(0, charIndex - 1);
+                typingText .textContent = currentText.substring(0, charIndex - 1);
                 charIndex--;
             } else {
-                heroText.textContent = currentText.substring(0, charIndex + 1);
+                typingText .textContent = currentText.substring(0, charIndex + 1);
                 charIndex++;
             }
             
