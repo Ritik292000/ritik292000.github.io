@@ -30,7 +30,14 @@
             backdrop-filter: blur(10px);
             padding: 1rem 2rem;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 2rem;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 2px 20px rgba(0, 245, 255, 0.1);
         }
         
         .nav-container {
@@ -47,7 +54,24 @@
             background: linear-gradient(45deg, #00f5ff, #ff00ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-             margin-left: 130px
+            margin-left: 130px
+            transform: translateX(0); /* Add this */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .navbar.scrolled .logo {
+            transform: translateX(-20px) scale(0.9);
+        }
+
+        .logo img {
+            height: 65px;
+            vertical-align: middle;
+            margin-right: 10px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        
+        .navbar.scrolled .logo img {
+            height: 45px;
+            margin-right: 8px;
         }
         
         @keyframes glow {
@@ -59,6 +83,14 @@
             display: flex;
             list-style: none;
             gap: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .navbar.scrolled .nav-links {
+            gap: 1.5rem;
+        }
+        
+        .navbar.scrolled .nav-links a {
+            font-size: 0.9rem;
         }
         
         .nav-links a {
@@ -94,14 +126,35 @@
             border-radius: 25px;
             text-decoration: none;
             color: white;
-            transition: all 0.3s ease;
             animation: pulse 2s infinite;
             margin-right: 130px
+            transform: translateX(0); /* Add this */
+            font-size: 1rem; /* Add this */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .navbar.scrolled .download-btn {
+            transform: translateX(20px) scale(0.9);
+            padding: 0.4rem 1.2rem;
+            font-size: 0.9rem;
+        }
+        
+        .navbar.scrolled .download-btn:hover {
+            transform: translateX(20px) scale(1.05);
         }
         
         .download-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 5px 15px rgba(0, 245, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .navbar.scrolled .logo {
+                transform: translateX(-10px) scale(0.9);
+            }
+            
+            .navbar.scrolled .download-btn {
+                transform: translateX(10px) scale(0.9);
+            }
         }
         
         @keyframes pulse {
@@ -926,7 +979,7 @@
     <canvas id="matrix-canvas"></canvas>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="nav-container" id="navbar">
             <div class="logo"><img src="ritik_logo.png" alt="RC" style="height: 65px; vertical-align: middle; margin-right: 10px;"></div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
@@ -1265,7 +1318,6 @@
               drops[i]++;
             }
           }
-        
           setInterval(draw, 40);
         
           window.addEventListener('resize', () => {
@@ -1274,6 +1326,34 @@
           });
           document.addEventListener('DOMContentLoaded', () => {
             typeEffect();
+                // Add navbar scroll animation here
+              const navbar = document.getElementById('navbar');
+              let scrollTimeout;
+            
+              function handleScroll() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 50) {
+                  navbar.classList.add('scrolled');
+                } else {
+                  navbar.classList.remove('scrolled');
+                }
+              }
+            
+              // Throttle scroll events for better performance
+              function throttleScroll() {
+                if (scrollTimeout) {
+                  return;
+                }
+                
+                scrollTimeout = setTimeout(() => {
+                  handleScroll();
+                  scrollTimeout = null;
+                }, 10);
+              }
+            
+              // Add scroll event listener
+              window.addEventListener('scroll', throttleScroll);
           });
     </script>
 </body>
